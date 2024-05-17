@@ -47,8 +47,15 @@ require("lazy").setup({
     },
   },
 })
+require("netman")
 require("lspconfig").grammarly.setup({
   cmd = { os.getenv("HOME") .. "/bin/grammarlywo.sh" },
 })
+-- require("neo-tree").setup({
+--   sources = {
+--     "filesystem", -- Neotree filesystem source
+--     "netman.ui.neo-tree", -- The one you really care about 😉
+--   },
+-- })
 require("remote-sshfs").setup({})
-require("telescope").load_extension("remote-sshfs")
+-- require("telescope").load_extension("remote-sshfs")

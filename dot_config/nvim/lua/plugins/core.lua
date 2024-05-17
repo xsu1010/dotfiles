@@ -142,9 +142,36 @@ return {
   { "tpope/vim-fugitive" },
   { "nosduco/remote-sshfs.nvim" },
   {
+    "chipsenkbeil/distant.nvim",
+    branch = "v0.3",
+    config = function()
+      require("distant"):setup()
+    end,
+  },
+  -- {
+  --   "nvim-telescope/telescope-file-browser.nvim",
+  --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  -- },
+  { "miversen33/netman.nvim" },
+  {
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {},
+  },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "marilari88/neotest-vitest",
+    },
+    opts = {
+      adapters = {
+        ["neotest-vitest"] = {},
+      },
+    },
   },
   {
     "LazyVim/LazyVim",

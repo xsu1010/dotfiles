@@ -6,7 +6,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family      Fira Code
+font_family        FiraCodePatched Nerd Font
 # bold_font        auto
 # italic_font      auto
 # bold_italic_font auto
@@ -1583,7 +1583,7 @@ macos_thicken_font 0
 #: The full list of actions that can be mapped to key presses is
 #: available here <https://sw.kovidgoyal.net/kitty/actions/>.
 
-# kitty_mod ctrl+shift
+kitty_mod ctrl+shift+alt
 
 #: Special modifier key alias for default shortcuts. You can change
 #: the value of this option to alter all default shortcuts that use
@@ -2240,6 +2240,6 @@ macos_thicken_font 0
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin Kitty Mocha
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME

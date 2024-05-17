@@ -90,6 +90,16 @@
                                     "key_code": "open_bracket"
                                 }
                             ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_control"
+                                }
+                            ]
                         }
                     ],
                     "treat_as_built_in_keyboard": false
