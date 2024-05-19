@@ -77,17 +77,21 @@ return {
       map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
       end,
+      -- stylua: ignore end
     },
   },
   -- { "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
   {
     "williamboman/mason.nvim",
+    event = "VeryLazy",
   },
   {
     "williamboman/mason-lspconfig",
+    event = "VeryLazy",
   },
   {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     --  opts = {
     --    setup = {
     --      grammarly = function(_, opts)
@@ -112,66 +116,39 @@ return {
   -- { "hrsh7th/cmp-nvim-lsp" },
   -- { "hrsh7th/nvim-cmp" },
   -- { "L3MON4D3/LuaSnip" },
-  { "andweeb/presence.nvim" },
+  { "tpope/vim-fugitive", event = "VeryLazy" },
   {
-    "https://codeberg.org/esensar/nvim-dev-container",
-    opts = {
-      setup = {
-        devcontainer = function(_)
-          require("devcontainer").setup({
-            attach_mounts = {
-              neovim_config = {
-                enabled = true,
-                options = { "readOnly" },
-              },
-              neovim_data = {
-                enabled = false,
-                options = {},
-              },
-              neovim_state = {
-                enabled = false,
-                options = {},
-              },
-            },
-          })
-        end,
-      },
+    "topaxi/gh-actions.nvim",
+    event = "VeryLazy",
+    cmd = "GhActions",
+    keys = {
+      { "<leader>gh", "<cmd>GhActions<cr>", desc = "Open Github Actions" },
     },
+    -- optional, you can also install and use `yq` instead.
+    build = "make",
+    dependencies = { "nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim" },
+    opts = {},
+    config = function(_, opts)
+      require("gh-actions").setup(opts)
+    end,
   },
-  { "jamestthompson3/nvim-remote-containers" },
-  { "tpope/vim-fugitive" },
-  { "nosduco/remote-sshfs.nvim" },
   {
     "chipsenkbeil/distant.nvim",
     branch = "v0.3",
     config = function()
-      require("distant"):setup()
+      require("distant").setup()
     end,
   },
   -- {
   --   "nvim-telescope/telescope-file-browser.nvim",
   --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   -- },
-  { "miversen33/netman.nvim" },
+  { "miversen33/netman.nvim", event = "VeryLazy" },
   {
     "m4xshen/hardtime.nvim",
+    event = "VeryLazy",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {},
-  },
-  {
-    "nvim-neotest/neotest",
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "marilari88/neotest-vitest",
-    },
-    opts = {
-      adapters = {
-        ["neotest-vitest"] = {},
-      },
-    },
   },
   {
     "LazyVim/LazyVim",
