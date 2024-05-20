@@ -139,16 +139,42 @@ return {
       require("distant").setup()
     end,
   },
-  -- {
-  --   "nvim-telescope/telescope-file-browser.nvim",
-  --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  -- },
-  { "miversen33/netman.nvim", event = "VeryLazy" },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  -- { "miversen33/netman.nvim", event = "VeryLazy" },
   {
     "m4xshen/hardtime.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = {},
+    opts = {
+      disable_mouse = false,
+      max_count = 5,
+      disabled_keys = {
+        ["j"] = {},
+        ["k"] = {},
+      },
+      restricted_keys = {
+        ["j"] = {},
+        ["k"] = {},
+      },
+      hints = {
+        ["[dcyvV][ia][%(%)]"] = {
+          message = function(keys)
+            return "Use " .. keys:sub(1, 2) .. "b instead of " .. keys
+          end,
+          length = 3,
+        },
+        [":w<cr>"] = {
+          message = function(keys)
+            return "Use <C-s> insetad of " .. keys
+          end,
+          length = 3,
+        },
+      },
+    },
   },
   {
     "LazyVim/LazyVim",

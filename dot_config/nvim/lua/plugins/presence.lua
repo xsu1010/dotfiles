@@ -11,8 +11,7 @@ return {
     opts = {
       neovim_image_text = "nvim btw",
       main_image = "neovim",
-      log_level = "warn",
-      buttons = function(buffer, repo_url)
+      buttons = function(repo_url)
         if repo_url ~= nil then
           if string.find(repo_url, "bmw") then
             -- shhhhhh
@@ -24,7 +23,7 @@ return {
               github,
             }
           else
-            vim.notify(repo_url)
+            -- vim.notify(repo_url)
             -- convert ssh to https so that presence works
             if string.find(repo_url, "git@") then
               -- replace ONLY the first occurence of "git@" with "https://"
