@@ -1,11 +1,14 @@
 return {
+  { "eandrju/cellular-automaton.nvim" }, -- very important!!!!
+  { "chrisgrieser/nvim-chainsaw" },
   {
     "catppuccin/nvim",
     enabled = true,
-    lazy = true,
+    lazy = false,
     name = "catppuccin",
     priority = 1000,
     opts = {
+      transparent_background = true,
       integrations = {
         aerial = true,
         alpha = true,
@@ -48,6 +51,14 @@ return {
     enabled = true,
     event = "LazyFile",
     opts = {
+      current_line_blame = true,
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+        delay = 1000,
+        ignore_whitespace = false,
+        virt_text_priority = 100,
+      },
       signs = {
         add = { text = "▎" },
         change = { text = "▎" },
@@ -92,26 +103,26 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
-    --  opts = {
-    --    setup = {
-    --      grammarly = function(_, opts)
-    --        require("lspconfig").grammarly.setup({
-    --          server = opts,
-
-    --          cmd = { os.getenv("HOME") .. "/bin/grammarlywo.sh" },
-    --          settings = {
-    --            grammarly = {
-    --              config = {
-    --                suggestionCategories = {
-    --                  informalPronounsAcademic = "on",
-    --                },
-    --              },
-    --            },
-    --          },
-    --        })
-    --      end,
-    --    },
-    --  },
+    opts = {
+      servers = {
+        stylelint_lsp = {},
+      },
+      setup = {
+        stylelint_lsp = function(_, opts)
+          require("lspconfig").stylelint_lsp.setup({
+            opts,
+            filetypes = { "css", "scss", "less", "sass" },
+            settings = {
+              stylelintplus = {
+                filetypes = { "css", "scss", "less", "sass" },
+                validateOnType = true,
+              },
+            },
+          })
+          return true
+        end,
+      },
+    },
   },
   -- { "hrsh7th/cmp-nvim-lsp" },
   -- { "hrsh7th/nvim-cmp" },
@@ -133,16 +144,8 @@ return {
     end,
   },
   {
-    "chipsenkbeil/distant.nvim",
-    branch = "v0.3",
-    config = function()
-      require("distant").setup()
-    end,
-  },
-  {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    opts = {},
   },
   -- { "miversen33/netman.nvim", event = "VeryLazy" },
   {
@@ -176,6 +179,19 @@ return {
       },
     },
   },
+  {
+    "stevearc/overseer.nvim",
+    lazy = true,
+    opts = {},
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    opts = {
+      question_header = "  xsu1010 ",
+    },
+  },
+  { "chrisgrieser/nvim-spider" },
+  { "tris203/precognition.nvim", config = {} },
   {
     "LazyVim/LazyVim",
     opts = {

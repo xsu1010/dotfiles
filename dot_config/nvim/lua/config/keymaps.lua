@@ -25,3 +25,6 @@ map("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
 map("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
 map("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
 map("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
+
+-- yippie
+map("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")

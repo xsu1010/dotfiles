@@ -11,7 +11,8 @@ return {
     opts = {
       neovim_image_text = "nvim btw",
       main_image = "neovim",
-      buttons = function(repo_url)
+      -- log_level = "debug",
+      buttons = function(buffer, repo_url)
         if repo_url ~= nil then
           if string.find(repo_url, "bmw") then
             -- shhhhhh
