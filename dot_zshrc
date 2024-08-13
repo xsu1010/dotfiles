@@ -1,0 +1,42 @@
+zstyle ':completion:*' completer _complete
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+autoload -Uz compinit
+compinit
+
+# Clone Zephyr.
+[[ -d ${ZDOTDIR:-~}/.zephyr ]] ||
+  git clone --depth=1 https://github.com/mattmc3/zephyr ${ZDOTDIR:-~}/.zephyr
+
+# Use zstyle to specify which plugins you want. Order matters.
+zephyr_plugins=(
+  zfunctions
+  directory
+  editor
+  history
+)
+zstyle ':zephyr:load' plugins $zephyr_plugins
+
+# Source Zephyr.
+source ${ZDOTDIR:-~}/.zephyr/zephyr.zsh
+
+# source antidote
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+
+# Set the root name of the plugins files (.txt and .zsh) antidote will use.
+zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
+
+# Ensure the .zsh_plugins.txt file exists so you can add plugins.
+[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
+
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load
+
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+eval "$(starship init zsh)"
+
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
