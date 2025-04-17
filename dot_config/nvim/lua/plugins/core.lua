@@ -191,7 +191,6 @@ return {
     },
   },
   { "chrisgrieser/nvim-spider" },
-  { "tris203/precognition.nvim", config = {} },
   { "mrjones2014/smart-splits.nvim" },
   {
     "LazyVim/LazyVim",
